@@ -1,5 +1,7 @@
 # Smart Chair
 
+## Link: https://ui-project-1-4gkaeuled-comp-sci.vercel.app/
+
 The goal of this project was to create a user interface for a chair with extra features, making it 'smart'.
 
 I added the following features to this chair:
