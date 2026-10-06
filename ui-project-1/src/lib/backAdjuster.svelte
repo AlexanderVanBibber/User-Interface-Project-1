@@ -1,6 +1,6 @@
 <script>
-    import{changeAngle, changePosition, selectTrapezoid} from '$lib/scripts.js';
-    import {selectedTrapezoid, angles, positions} from '$lib/scripts.js';
+    import { changeAngle, changePosition, selectTrapezoid } from '$lib/scripts.js';
+    import { selectedTrapezoid, angles, positions } from '$lib/scripts.js';
 </script>
 
 
@@ -47,7 +47,7 @@
             </button>
 
             <div class="value">
-                {angles[$selectedTrapezoid - 1]}°
+                {$angles[$selectedTrapezoid - 1]}°
             </div>
 
             <button onclick={() => changeAngle(-1)}>
@@ -65,7 +65,7 @@
             </button>
 
             <div class="value">
-                {positions[$selectedTrapezoid - 1]} in
+                {$positions[$selectedTrapezoid - 1]} in
             </div>
 
             <button onclick={() => changePosition(-1)}>
@@ -106,9 +106,14 @@
 
         cursor: pointer;
 
-        transition: transform 0.2s ease;
+        transition:
+            box-shadow 0.2s ease,
+            filter 0.2s ease,
+            transform 0.1s ease;
     }
 
+
+    /* White interior */
     .trapezoid::after {
         content: "";
         position: absolute;
@@ -117,9 +122,46 @@
         background: white;
     }
 
+
+    /* Selected trapezoid */
+    .trapezoid.selected {
+        background: #00f6ff;
+
+        box-shadow:
+            0 0 5px #00f6ff,
+            0 0 12px #00f6ff,
+            0 0 25px rgba(0, 246, 255, 0.7);
+    }
+
     .trapezoid.selected::after {
         background: black;
+
+        box-shadow:
+            inset 0 0 5px #00f6ff,
+            inset 0 0 12px rgba(0, 246, 255, 0.8),
+            inset 0 0 25px rgba(0, 246, 255, 0.35);
     }
+
+
+    /* Hover */
+    .trapezoid:hover {
+        background: #00f6ff;
+
+        box-shadow:
+            0 0 5px #00f6ff,
+            0 0 12px rgba(0, 246, 255, 0.8);
+    }
+
+    .trapezoid:hover::after {
+        background: black;
+    }
+
+
+    /* Press */
+    .trapezoid:active {
+        transform: scale(0.98);
+    }
+
 
     .top {
         clip-path: polygon(
@@ -196,15 +238,12 @@
         );
     }
 
-
-    /* ---------------- */
-    /* INDICATORS       */
-    /* ---------------- */
-
     .indicators {
         display: flex;
         flex-direction: column;
         gap: 40px;
+
+        transform: translateX(-1vw);
     }
 
     .indicator {
@@ -214,24 +253,68 @@
         gap: 10px;
     }
 
+
+    /* Up / down buttons */
     .indicator button {
         width: 40px;
         height: 40px;
 
-        border: 2px solid black;
-        background: white;
+        border: 2px solid white;
+        background: black;
+        color: white;
 
         cursor: pointer;
+
         font-size: 20px;
+        font-weight: bold;
+
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            text-shadow 0.2s ease,
+            transform 0.1s ease;
     }
 
+    .indicator button:hover {
+        color: #00f6ff;
+        border-color: #00f6ff;
+
+        text-shadow:
+            0 0 5px #00f6ff,
+            0 0 10px #00f6ff;
+
+        box-shadow:
+            0 0 5px #00f6ff,
+            0 0 12px rgba(0, 246, 255, 0.8),
+            inset 0 0 8px rgba(0, 246, 255, 0.35);
+    }
+
+    .indicator button:active {
+        transform: scale(0.92);
+    }
+
+
+    /* Numerical values */
     .value {
         width: 80px;
+
+        padding: 4px 0;
 
         text-align: center;
 
         font-size: 24px;
         font-weight: bold;
+
+        color: white;
+
+        background: black;
+
+        border: 2px solid white;
+        border-radius: 5px;
+
+        font-family: "Fredoka", sans-serif;
+
     }
 
 </style>

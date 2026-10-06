@@ -1,115 +1,171 @@
 <script>
 
-    import BackAdjuster from '$lib/backAdjuster.svelte';
-    import HeatSensor from '$lib/HeatSensor.svelte';
-    import Charger from '$lib/charger.svelte';
-    import MassageUI from '$lib/massageUI.svelte';
+    import TopBar from '$lib/topBar.svelte';
+    import Chair from '$lib/chair.svelte';
+
 
 </script>
 
-<div class="container">
+<div class="topBar">
 
-    <!-- LEFT FRONT + LEFT SIDE -->
-    <div class="side-column">
-        <div class="rectangle left-front">
-            <div class="charger">
-                <Charger />
-            </div>
-        </div>
-        <div class="rectangle left-side"></div>
-    </div>
+    <TopBar />
 
-    <!-- LEFT ARM -->
-    <div class="rectangle left-arm">
-        <div class="backAdjuster">
-            <BackAdjuster />
-        </div>
-        <div class="heatSensor">
-            <HeatSensor />
-        </div>
-    </div>
+</div>
 
-    <!-- RIGHT ARM -->
-    <div class="rectangle right-arm">
-        <div class="massageUI">
-            <MassageUI />
-        </div>
+<div class="background">
+
+    <section class="intro">
+        <h1>SMART CHAIR</h1>
+
+        <h2>Alex VanBibber</h2>
+
+        <a
+            class="github"
+            href="https://github.com/AlexanderVanBibber/User-Interface-Project-1"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            GitHub Repository
+        </a>
+
+        <p>
+            This webpage is my UI for a smart chair. The goal was to create a
+            chair that fits the needs of real people interviewed for this
+            project.
+        </p>
+
+        <p class="instruction">
+            Navigate using the top bar or select different parts of the chair
+            itself.
+        </p>
+    </section>
+
+    <div class="chair">
+        <Chair />
     </div>
 
 </div>
 
-<div class="rectangle top-bar"></div>
-
 <style>
 
-.massageUI {
+    .background {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    transform: scale(1.2) translateY(45vh) translateX(4vw);
-}
+        margin-top: 20vh;
+        width: 50%;
+        height: 60vh;
 
-.charger {
+        background: black;
+        color: white;
 
-    transform: scale(.6) translateX(-34%) translateY(-23%);
-}
+        font-family: "Fredoka", sans-serif;
 
-.heatSensor {
+        border-radius: 3%;
+    }
 
-    transform: translateY(-45vh) translateX(2vw);
-}
+    .intro {
+        width: 70%;
+        max-width: 800px;
 
-.backAdjuster {
+        margin-top: 5vh;
+        padding: 2rem;
 
-    transform:scale(0.9) translateY(50vh) translateX(1vh);
-    transform-origin: top left;
-}
+        background: rgb(20, 20, 20);
+        border: 2px solid white;
+        border-radius: 8px;
 
-.container {
-    display: flex;
-    align-items: flex-start;
-    gap: 2vw;
+        text-align: center;
 
-    margin-top: 10vh;
-    margin-left: 1vw;
-}
+        box-shadow:
+            0 0 5px rgba(255, 255, 255, 0.2),
+            inset 0 0 15px rgba(0, 0, 0, 0.8);
+    }
 
-.side-column {
-    display: flex;
-    flex-direction: column;
-    gap: 3vh;
-}
+    h1 {
+        margin: 0 0 0.5rem;
 
-.rectangle {
-    background: gray;
-}
+        font-size: 3rem;
+        letter-spacing: 0.15em;
 
-.top-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
+        color: white;
 
-    width: 100%;
-    height: 7vh;
-}
+    }
 
-.left-arm,
-.right-arm {
-    width: 25vw;
-    aspect-ratio: 1 / 1.9;
-    height: auto;
-    position: relative;
-}
+    h2 {
+        margin: 0.5rem 0;
 
-.left-front{
-    width: 20vw;
-    aspect-ratio: 1s;
-    height: 20vw;
+        font-size: 1.3rem;
+        color: white;
 
-    transform: translateX(25%);
-}
+    }
 
-.left-side{
-    width: 30vw;
-    aspect-ratio: 2.2 / 2;
-    height: auto;
-}
+    p {
+        max-width: 650px;
+        margin: 1.5rem auto 0;
+
+        line-height: 1.6;
+        font-size: 1.05rem;
+
+        color: white;
+    }
+
+    .instruction {
+        margin-top: 1rem;
+
+        color: #00f6ff;
+
+    }
+
+    .github {
+        display: inline-block;
+
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+
+        background: black;
+        border: 2px solid white;
+        border-radius: 5px;
+
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+
+        transition:
+            color 0.2s,
+            border-color 0.2s,
+            box-shadow 0.2s,
+            text-shadow 0.2s,
+            transform 0.1s;
+    }
+
+    .github:hover {
+        color: #00f6ff;
+        border-color: #00f6ff;
+
+        text-shadow:
+            0 0 5px #00f6ff,
+            0 0 10px #00f6ff;
+
+        box-shadow:
+            0 0 5px #00f6ff,
+            0 0 12px rgba(0, 246, 255, 0.8),
+            inset 0 0 8px rgba(0, 246, 255, 0.35);
+    }
+
+    .github:active {
+        transform: scale(0.95);
+    }
+
+    .chair {
+        margin-top: 5vh;
+
+        transform:
+            scale(2)
+            translateX(25vw)
+            translateY(-17vw);
+    }
+
 </style>

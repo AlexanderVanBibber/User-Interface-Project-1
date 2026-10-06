@@ -3,6 +3,9 @@
     import BackAdjuster from '$lib/backAdjuster.svelte';
     import HeatSensor from '$lib/HeatSensor.svelte';
     import Charger from '$lib/charger.svelte';
+    import MassageUI from '$lib/massageUI.svelte';
+    import RotationDial from '$lib/rotationControl.svelte';
+    import RotationIndicator from '$lib/rotationIndicator.svelte';
 
 </script>
 
@@ -15,32 +18,64 @@
                 <Charger />
             </div>
         </div>
-        <div class="rectangle left-side"></div>
+        <div class="rectangle left-side">
+            <div class="rotationDial">
+                <RotationDial />
+            </div>
+        </div>
     </div>
 
-    <!-- LEFT ARM -->
     <div class="rectangle left-arm">
         <div class="backAdjuster">
-        <BackAdjuster />
+            <BackAdjuster />
         </div>
         <div class="heatSensor">
             <HeatSensor />
         </div>
     </div>
 
-    <!-- RIGHT ARM -->
-    <div class="rectangle right-arm"></div>
+    <div class="rectangle right-arm">
+        <div class="massageUI">
+            <MassageUI />
+        </div>
+
+        <div class="rotationIndicator">
+            <RotationIndicator />
+        </div>
+    </div>
 
 </div>
 
-<div class="rectangle top-bar"></div>
+<div class="rectangle top-bar">
+
+    <a href="/leftarm">Left Arm</a>
+    <a href="/leftfront">Left Front</a>
+    <a href="/leftside">Left Side</a>
+    <a href="/rightarm">Right Arm</a>
+
+
+</div>
 
 <style>
 
+.rotationDial {
+
+    transform: scale(0.3)
+}
+
+.rotationIndicator {
+
+    transform: scale(0.2) translateX(-50vw) translateY(-15vw);
+}
+
+.massageUI {
+
+    transform: scale(1.2) translateY(45vh) translateX(4vw);
+}
+
 .charger {
 
-    transform: scale(10);
-    transform-origin: top left;
+    transform: scale(.6) translateX(-34%) translateY(-23%);
 }
 
 .heatSensor {
@@ -92,13 +127,15 @@
 
 .left-front{
     width: 20vw;
-    aspect-ratio: 1;
+    aspect-ratio: 1s;
     height: 20vw;
+
+    transform: translateX(25%);
 }
 
 .left-side{
-    width: 30vw;
-    aspect-ratio: 2.2 / 2;
+    width: 40vw;
+    aspect-ratio: 2 / 1;
     height: auto;
 }
 </style>

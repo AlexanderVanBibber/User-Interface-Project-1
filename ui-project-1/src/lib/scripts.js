@@ -1,25 +1,38 @@
-let chairPosition = 0;
-let chairHeight = 0;
+
 
 import { writable } from 'svelte/store';
 import { get } from 'svelte/store';
 
 
-export let chairAngle = writable(180);
+export let chairAngle = writable(0);
 export let turnDirection = true;
+
+export let chairHeight = writable(0);
 
 export function moveUp() {
 
-    chairHeight += 1;
+    let height = get(chairHeight);
 
-    console.log(chairHeight);
+    if(height < 5) {
+
+        chairHeight.update(height => height + 1);
+
+    }
+
+
 }
 
 export function moveDown() {
 
-    chairHeight -= 1;
+    let height = get(chairHeight);
 
-    console.log(chairHeight);
+    if(height > 0) {
+
+        chairHeight.update(height => height - 1);
+
+    }
+
+
 }
 
 export function rotateClockwise() {
@@ -220,4 +233,26 @@ export function changePosition(amount) {
         newValues[index] += amount;
         return newValues;
     });
+}
+
+export const backMassageOn = writable(false);
+export const backMassageLevel = writable(1);
+
+export const seatMassageOn = writable(false);
+export const seatMassageLevel = writable(1);
+
+export function toggleBackMassage() {
+    backMassageOn.update(value => !value);
+}
+
+export function setBackMassageLevel(level) {
+    backMassageLevel.set(level);
+}
+
+export function toggleSeatMassage() {
+    seatMassageOn.update(value => !value);
+}
+
+export function setSeatMassageLevel(level) {
+    seatMassageLevel.set(level);
 }
